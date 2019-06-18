@@ -1,7 +1,13 @@
+// @flow
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function MetaPerson({ entity, handleAction }) {
+type Props = {
+  entity: any,
+  handleAction: () => void,
+}
+
+function MetaPerson({ entity, handleAction }: Props) {
   return (
     <div>
       <div>{entity.greet()}</div>

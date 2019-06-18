@@ -1,19 +1,39 @@
-export default function MetaHuman(name, health, kick, weapon) {
-  this.name = name;
-  this.health = health;
-  this.kick = kick;
-  this.weapon = weapon;
-  this.isDead = false;
-}
+// @flow
 
-MetaHuman.prototype.greet = function greet() {
-  return `${this.name} is greeting You! And I have weapon: ${this.weapon}`;
+export type MetaHumanAttrs = {
+  name: string,
+  health: number,
+  kick: number,
+  weapon: string,
 };
 
-MetaHuman.prototype.getDamage = function getDamage(damageValue) {
-  this.health = (this.health - damageValue).toFixed(2);
-  if (this.health <= 0) {
-    this.isDead = true;
-    this.health = 0;
+export type MetaHumanT = {
+  ...MetaHumanAttrs,
+  greet: () => string,
+  getDamage: (damage: number) => void,
+};
+
+export default class MetaHuman {
+  constructor({
+    name,
+    health,
+    kick,
+    weapon,
+  }: MetaHumanAttrs) {
+    this.name = name;
+    this.health = health;
+    this.kick = kick;
+    this.weapon = weapon;
+    this.isDead = false;
   }
-};
+
+  greet = (): string => `${this.name} is greeting You! And I have weapon: ${this.weapon}`;
+
+  getDamage = (damageValue: number): void => {
+    this.health = parseFloat((this.health - damageValue).toFixed(2));
+    if (this.health <= 0) {
+      this.isDead = true;
+      this.health = 0;
+    }
+  };
+}
