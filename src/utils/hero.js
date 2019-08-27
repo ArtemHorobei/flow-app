@@ -1,5 +1,7 @@
 // @flow
+
 import MetaHuman from './metaHuman';
+import type { MetaHumanT } from './metaHuman';
 import weaponBoost from './constants';
 
 export type HeroAttrs = {
@@ -13,6 +15,7 @@ export type HeroAttrs = {
 
 export type HeroT = {
   ...HeroAttrs,
+  ...MetaHumanT,
   saveWorld: () => number,
 };
 
@@ -26,6 +29,10 @@ export default class Hero extends MetaHuman {
     ability1: 1.02,
     ability2: 1.18,
   };
+
+  gift: string;
+
+  ability: string;
 
   constructor({
     name,

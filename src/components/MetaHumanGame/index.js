@@ -1,4 +1,5 @@
 // @flow
+
 import React, { Component } from 'react';
 import type { HeroT } from '../../utils/hero';
 import type { VillainT } from '../../utils/villain';

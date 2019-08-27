@@ -14,6 +14,16 @@ export type MetaHumanT = {
 };
 
 export default class MetaHuman {
+  name: string;
+
+  health: number;
+
+  kick: number;
+
+  weapon: string;
+
+  isDead: boolean;
+
   constructor({
     name,
     health,

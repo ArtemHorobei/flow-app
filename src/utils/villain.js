@@ -1,4 +1,5 @@
 // @flow
+
 import MetaHuman from './metaHuman';
 import weaponBoost from './constants';
 
@@ -14,6 +15,7 @@ export type VillainAttrs = {
 export type VillainT = {
   ...VillainAttrs,
   destroyWorld: () => number,
+  getDamage: (damageValue: number) => void,
 };
 
 export default class Villain extends MetaHuman {
@@ -26,6 +28,10 @@ export default class Villain extends MetaHuman {
     special1: 1.22,
     special2: 1.1,
   };
+
+  curse: string;
+
+  special: string;
 
   constructor({
     name,
