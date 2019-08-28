@@ -8,8 +8,7 @@ export interface IVillain {
   destroyWorld(): number;
 }
 
-export type VillainAttrs = {
-  ...MetaHumanAttrs,
+export type VillainAttrs = MetaHumanAttrs & {
   curse: string,
   special: string,
 };
@@ -29,11 +28,23 @@ export default class Villain extends MetaHuman implements IVillain {
 
   special: string;
 
-  constructor(props: VillainAttrs) {
-    super({ ...props });
+  constructor({
+    name,
+    health,
+    kick,
+    weapon,
+    curse,
+    special,
+  }: VillainAttrs) {
+    super({
+      name,
+      health,
+      kick,
+      weapon,
+    });
 
-    this.curse = props.curse;
-    this.special = props.special;
+    this.curse = curse;
+    this.special = special;
   }
 
   destroyWorld = (): number => {

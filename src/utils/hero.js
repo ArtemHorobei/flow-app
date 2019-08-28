@@ -8,8 +8,7 @@ export interface IHero {
   saveWorld: () => number,
 }
 
-export type HeroAttrs = {
-  ...MetaHumanAttrs,
+export type HeroAttrs = MetaHumanAttrs & {
   gift: string,
   ability: string,
 };
@@ -29,11 +28,23 @@ export default class Hero extends MetaHuman implements IHero {
 
   ability: string;
 
-  constructor(props: HeroAttrs) {
-    super({ ...props });
+  constructor({
+    name,
+    health,
+    kick,
+    weapon,
+    gift,
+    ability,
+  }: HeroAttrs) {
+    super({
+      name,
+      health,
+      kick,
+      weapon,
+    });
 
-    this.gift = props.gift;
-    this.ability = props.ability;
+    this.gift = gift;
+    this.ability = ability;
   }
 
   saveWorld = (): number => {
