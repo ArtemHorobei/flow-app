@@ -1,8 +1,6 @@
 // @flow
 
 import React, { Component } from 'react';
-import type { HeroT } from '../../utils/hero';
-import type { VillainT } from '../../utils/villain';
 import Hero from '../../utils/hero';
 import Villain from '../../utils/villain';
 import MetaPerson from './MetaPerson';
@@ -12,31 +10,35 @@ import '../../App.css';
 type Props = {};
 
 type State = {
-  hero: HeroT,
-  villain: VillainT,
+  hero: Hero,
+  villain: Villain,
 };
 
 class MetaHumanGame extends Component<Props, State> {
   constructor() {
     super();
 
+    const hero: Hero = new Hero({
+      name: 'Logan',
+      health: 100,
+      kick: 4,
+      weapon: 'claws',
+      gift: 'gift1',
+      ability: 'ability1',
+    });
+
+    const villain: Villain = new Villain({
+      name: 'Magneto',
+      health: 60,
+      kick: 8,
+      weapon: 'magnet',
+      curse: 'curse1',
+      special: 'special1',
+    });
+
     this.state = {
-      hero: new Hero({
-        name: 'Logan',
-        health: 100,
-        kick: 4,
-        weapon: 'claws',
-        gift: 'gift1',
-        ability: 'ability1',
-      }),
-      villain: new Villain({
-        name: 'Magneto',
-        health: 60,
-        kick: 8,
-        weapon: 'magnet',
-        curse: 'curse1',
-        special: 'special1',
-      }),
+      hero,
+      villain,
     };
   }
 

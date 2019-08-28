@@ -1,24 +1,20 @@
 // @flow
 
 import MetaHuman from './metaHuman';
+import type { MetaHumanAttrs } from './metaHuman';
 import weaponBoost from './constants';
 
+export interface IVillain {
+  destroyWorld(): number;
+}
+
 export type VillainAttrs = {
-  name: string,
-  health: number,
-  kick: number,
-  weapon: string,
+  ...MetaHumanAttrs,
   curse: string,
   special: string,
 };
 
-export type VillainT = {
-  ...VillainAttrs,
-  destroyWorld: () => number,
-  getDamage: (damageValue: number) => void,
-};
-
-export default class Villain extends MetaHuman {
+export default class Villain extends MetaHuman implements IVillain {
   static curses = {
     curse1: 1.16,
     curse2: 1.01,
@@ -33,23 +29,11 @@ export default class Villain extends MetaHuman {
 
   special: string;
 
-  constructor({
-    name,
-    health,
-    kick,
-    weapon,
-    curse,
-    special,
-  }: VillainAttrs) {
-    super({
-      name,
-      health,
-      kick,
-      weapon,
-    });
+  constructor(props: VillainAttrs) {
+    super({ ...props });
 
-    this.curse = curse;
-    this.special = special;
+    this.curse = props.curse;
+    this.special = props.special;
   }
 
   destroyWorld = (): number => {

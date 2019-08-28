@@ -1,10 +1,11 @@
 // @flow
 
 import React from 'react';
-import PropTypes from 'prop-types';
+import Hero from '../../utils/hero';
+import Villain from '../../utils/villain';
 
 type Props = {
-  entity: any,
+  entity: Hero | Villain,
   handleAction: () => void,
 }
 
@@ -26,15 +27,5 @@ function MetaPerson({ entity, handleAction }: Props) {
     </div>
   );
 }
-
-MetaPerson.propTypes = {
-  entity: PropTypes.shape({}),
-  handleAction: PropTypes.func,
-};
-
-MetaPerson.defaultProps = {
-  entity: null,
-  handleAction: () => {},
-};
 
 export default MetaPerson;

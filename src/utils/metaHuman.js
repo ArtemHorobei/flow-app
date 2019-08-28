@@ -1,5 +1,10 @@
 // @flow
 
+export interface IMetaHuman {
+  greet(): string;
+  getDamage(value: number): void;
+}
+
 export type MetaHumanAttrs = {
   name: string,
   health: number,
@@ -7,13 +12,7 @@ export type MetaHumanAttrs = {
   weapon: string,
 };
 
-export type MetaHumanT = {
-  ...MetaHumanAttrs,
-  greet: () => string,
-  getDamage: (damage: number) => void,
-};
-
-export default class MetaHuman {
+export default class MetaHuman implements IMetaHuman {
   name: string;
 
   health: number;

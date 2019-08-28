@@ -1,25 +1,20 @@
 // @flow
 
 import MetaHuman from './metaHuman';
-import type { MetaHumanT } from './metaHuman';
+import type { MetaHumanAttrs } from './metaHuman';
 import weaponBoost from './constants';
 
+export interface IHero {
+  saveWorld: () => number,
+}
+
 export type HeroAttrs = {
-  name: string,
-  health: number,
-  kick: number,
-  weapon: string,
+  ...MetaHumanAttrs,
   gift: string,
   ability: string,
 };
 
-export type HeroT = {
-  ...HeroAttrs,
-  ...MetaHumanT,
-  saveWorld: () => number,
-};
-
-export default class Hero extends MetaHuman {
+export default class Hero extends MetaHuman implements IHero {
   static gifts = {
     gift1: 1.12,
     gift2: 1.08,
@@ -34,23 +29,11 @@ export default class Hero extends MetaHuman {
 
   ability: string;
 
-  constructor({
-    name,
-    health,
-    kick,
-    weapon,
-    gift,
-    ability,
-  }: HeroAttrs) {
-    super({
-      name,
-      health,
-      kick,
-      weapon,
-    });
+  constructor(props: HeroAttrs) {
+    super({ ...props });
 
-    this.gift = gift;
-    this.ability = ability;
+    this.gift = props.gift;
+    this.ability = props.ability;
   }
 
   saveWorld = (): number => {
